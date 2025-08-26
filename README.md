@@ -4,22 +4,52 @@
 
 ## Overview
 
-This README provides instructions on how to interact with a Spring AI application using function calling and local LLM on Ollama server.
+This project demonstrates how to integrate Spring AI with function calling using a local Large Language Model (LLM) server via Ollama. It builds upon the work by [Atharva1921](https://github.com/Atharva1921/Spring-AI-Function-Calling)
 
-Project based on https://github.com/Atharva1921/Spring-AI-Function-Calling - updated dependencies, added simple UI, additional tool and fall-back logic.
+## Features
+
+- **Function Calling**: Leverages Spring AI's function calling capabilities to interact with external services.
+- **Local LLM Integration**: Utilizes Ollama for running LLMs locally, ensuring privacy and control.
+- **User Interface**: A basic frontend built with Vue.js for seamless interaction.
+- **Tool Integration**: Demonstrates how to integrate and use external tools within the Spring AI ecosystem.
+- **Fallback Logic**: Implements fallback mechanisms to handle scenarios where the primary tool or service is unavailable.
 
 ## Prerequisites
 
-Before you start, ensure you have the following:
-- **Java 21**: Ensure you have Java version 21 
-- **Maven**:   Maven required to build Spring Boot application
-- **Ollama** LLM Models server: demo is using Ollama LLM server. Recommended Nvidia GPU VRAM minimum is 16 GB.
-- **npm** version > 11: npm used to run frontend
-- **Docker** or local instance of **PostgreSQL DB**: demo is using DB to store product details.
+Before you begin, ensure you have the following installed:
 
-## **How to use**
+- **Java 21**: Required for running the Spring Boot application.
+- **Maven**: For building and managing the project dependencies.
+- **Ollama**: A local LLM server. Follow the installation instructions on Ollama's official website
 
-Backend is Spring Boot application configuration located in src/resources/application.properties file:
+## **Setup Instructions**
+
+1. Clone the Repository
+
+```bash
+git clone https://github.com/andreminin/spring-ai-tool-demo.git
+cd spring-ai-tool-demo
+```
+
+2. **Configure Ollama**
+   - Ensure Ollama is installed and running on your local machine.
+   - Verify that the LLM models you intend to use are available and accessible via Ollama.
+
+3. **Build the Project** 
+
+   ```bash
+   mvn clean install
+   ```
+
+4. **Run the Application** 
+
+   ```bash
+   mvn spring-boot:run
+   ```
+
+## **Configuration**
+
+Spring Boot application configuration located in src/resources/application.properties file:
 
 > ```
 > spring.application.name=spring-tools-demo
@@ -38,7 +68,7 @@ Backend is Spring Boot application configuration located in src/resources/applic
 > app.init-sample-data=true
 > ```
 
-## Ollama
+## **Ollama**
 
 Demo is using "mistral-nemo:12b" on Ollama host "ollama-server"
 
@@ -54,7 +84,7 @@ ollama pull mistral-nemo:12b
 
 Open browser on http://ollama-server:11434 - it should print ollama server status
 
-## DB
+## **DB**
 
 Next, configure DB: change spring.datasource settings for DB url, user and password if needed.
 
@@ -71,7 +101,7 @@ docker run --name pg-test \
 
 Start PostgreSQL by running run_postgresql.sh or using docker command.
 
-## Back-end
+## **Back-end**
 
 Start Spring Boot application by running maven command (or directly in IDE):
 
@@ -115,7 +145,7 @@ List<Product> sampleProducts = List.of(
 
 
 
-API endpoint:
+## **API endpoint**:
 
 http://localhost:8080/ai/ask
 
